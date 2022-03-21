@@ -450,7 +450,7 @@ class Connection extends \Illuminate\Database\Connection
     {
         $result = $this->getClient()->writeFiles($table, $columns, $files, $format, [], $concurrency);
 
-        $this->logQuery('INSERT '.count($files)." FILES INTO {$table}", []);
+        $this->logQuery('INSERT '.count($files)." FILES INTO {$table}", [], 0);
 
         return $result;
     }
