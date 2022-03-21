@@ -10,7 +10,7 @@
 Via composer
 
 ```bash
-composer require the-tinderbox/clickhouse-builder
+composer require qgmac/clickhouse-builder
 ```
 
 # Usage
