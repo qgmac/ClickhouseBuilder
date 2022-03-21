@@ -105,9 +105,9 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Returns statistic for last query.
      *
+     * @return array|\Tinderbox\Clickhouse\Query\QueryStatistic
      * @throws \Tinderbox\ClickhouseBuilder\Exceptions\BuilderException
      *
-     * @return array|\Tinderbox\Clickhouse\Query\QueryStatistic
      */
     public function getLastQueryStatistic()
     {
@@ -131,7 +131,7 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Creates Clickhouse client.
      *
-     * @param mixed              $server
+     * @param mixed $server
      * @param TransportInterface $transport
      *
      * @return Client
@@ -162,10 +162,10 @@ class Connection extends \Illuminate\Database\Connection
      *
      * @param array $config
      *
-     * @throws \Tinderbox\Clickhouse\Exceptions\ClusterException
+     * @return ServerProvider
      * @throws \Tinderbox\Clickhouse\Exceptions\ServerProviderException
      *
-     * @return ServerProvider
+     * @throws \Tinderbox\Clickhouse\Exceptions\ClusterException
      */
     protected function assembleServerProvider(array $config)
     {
@@ -256,7 +256,7 @@ class Connection extends \Illuminate\Database\Connection
      * Begin a fluent query against a database table.
      *
      * @param \Closure|Builder|string $table
-     * @param string|null             $as
+     * @param string|null $as
      *
      * @return \Tinderbox\ClickhouseBuilder\Integrations\Laravel\Builder
      */
@@ -280,9 +280,9 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Start a new database transaction.
      *
+     * @return void
      * @throws \Exception
      *
-     * @return void
      */
     public function beginTransaction()
     {
@@ -292,9 +292,9 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Sets Clickhouse client.
      *
+     * @return self
      * @var Client
      *
-     * @return self
      */
     public function setClient(Client $client)
     {
@@ -317,8 +317,8 @@ class Connection extends \Illuminate\Database\Connection
      * Run a select statement against the database.
      *
      * @param string $query
-     * @param array  $bindings
-     * @param array  $tables
+     * @param array $bindings
+     * @param array $tables
      *
      * @return array
      */
@@ -370,9 +370,9 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Commit the active database transaction.
      *
+     * @return void
      * @throws NotSupportedException
      *
-     * @return void
      */
     public function commit()
     {
@@ -405,11 +405,11 @@ class Connection extends \Illuminate\Database\Connection
      * Execute a Closure within a transaction.
      *
      * @param \Closure $callback
-     * @param int      $attempts
-     *
-     * @throws \Throwable
+     * @param int $attempts
      *
      * @return mixed
+     * @throws \Throwable
+     *
      */
     public function transaction(\Closure $callback, $attempts = 1)
     {
@@ -420,7 +420,7 @@ class Connection extends \Illuminate\Database\Connection
      * Run an insert statement against the database.
      *
      * @param string $query
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @return bool
      */
@@ -438,11 +438,11 @@ class Connection extends \Illuminate\Database\Connection
     /**
      * Run async insert queries from local CSV or TSV files.
      *
-     * @param string      $table
-     * @param array       $columns
-     * @param array       $files
+     * @param string $table
+     * @param array $columns
+     * @param array $files
      * @param null|string $format
-     * @param int         $concurrency
+     * @param int $concurrency
      *
      * @return array
      */
@@ -450,7 +450,7 @@ class Connection extends \Illuminate\Database\Connection
     {
         $result = $this->getClient()->writeFiles($table, $columns, $files, $format, [], $concurrency);
 
-        $this->logQuery('INSERT '.count($files)." FILES INTO {$table}", [], 0);
+        $this->logQuery('INSERT ' . count($files) . " FILES INTO {$table}", [], 0);
 
         return $result;
     }
@@ -459,7 +459,7 @@ class Connection extends \Illuminate\Database\Connection
      * Run an update statement against the database.
      *
      * @param string $query
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @throws NotSupportedException
      */
@@ -472,7 +472,7 @@ class Connection extends \Illuminate\Database\Connection
      * Run a delete statement against the database.
      *
      * @param string $query
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @return int
      */
@@ -485,7 +485,7 @@ class Connection extends \Illuminate\Database\Connection
      * Run an SQL statement and get the number of rows affected.
      *
      * @param string $query
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @throws NotSupportedException
      */
@@ -498,8 +498,8 @@ class Connection extends \Illuminate\Database\Connection
      * Run a select statement and return a single result.
      *
      * @param string $query
-     * @param array  $bindings
-     * @param array  $tables
+     * @param array $bindings
+     * @param array $tables
      *
      * @return mixed
      */
@@ -512,7 +512,7 @@ class Connection extends \Illuminate\Database\Connection
      * Execute an SQL statement and return the boolean result.
      *
      * @param string $query
-     * @param array  $bindings
+     * @param array $bindings
      *
      * @return bool
      */
