@@ -1,5 +1,5 @@
 {
-  "name": "the-tinderbox/clickhouse-builder",
+  "name": "qgmac/clickhouse-builder",
   "description": "Clickhouse sql query builder",
   "authors": [
     {
@@ -9,6 +9,10 @@
     {
       "name": "Evsign",
       "email": "evsign.alex@gmail.com"
+    },
+    {
+      "name": "qgmac",
+      "email": "qgmac@qq.com"
     }
   ],
   "autoload": {
@@ -30,7 +34,7 @@
   "require": {
     "php": "^7.1|^8.0",
     "myclabs/php-enum": "^1.5",
-    "the-tinderbox/clickhouse-php-client": "^3.0"
+    "qgmac/clickhouse-php-client": "^3.1.1"
   },
   "require-dev": {
     "illuminate/database": "5.*",
